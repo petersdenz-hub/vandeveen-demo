@@ -50,7 +50,7 @@ blockquote p{font-size:1.05rem;margin:0 0 14px}cite{font-style:normal;font-weigh
 details{background:#fff;border-radius:12px;margin:10px 0;border:1px solid var(--line)}
 summary{cursor:pointer;padding:18px 48px 18px 20px;font-weight:600;list-style:none;position:relative}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:20px;top:12px;font-size:1.5rem;color:var(--gold-d)}
+summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);line-height:1;font-size:1.5rem;color:var(--gold-d)}
 details[open] summary::after{content:"–"}details p{margin:0;padding:0 20px 18px;color:var(--muted)}
 .form{background:var(--cream);border-radius:var(--r);padding:24px;display:grid;gap:14px}
 .form label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
@@ -84,3 +84,22 @@ fieldset{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;
 body.shot .sticky{display:none}
 fieldset{grid-template-columns:1fr}.chk{font-size:.9rem}
 @media(min-width:420px){fieldset{grid-template-columns:1fr 1fr}}
+/* accordions (diensten, werkwijze, faq) */
+.acc{list-style:none;padding:0;margin:28px 0;max-width:800px}
+.acc li{margin:0}
+.acc summary{display:flex;align-items:center;gap:14px}
+.acc summary h3{margin:0;font-size:1.15rem}
+.acc-ico{font-size:1.4rem;width:44px;height:44px;flex:none;border-radius:12px;background:var(--cream);display:grid;place-items:center}
+.alt .acc-ico{background:#fff}
+.acc-num{display:grid;place-items:center;width:36px;height:36px;flex:none;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;font-family:Inter}
+.acc summary::after{top:50%;transform:translateY(-50%)}
+.acc details p{padding-left:78px}.steps-acc details p{padding-left:70px}
+summary{min-height:48px}summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:12px}
+details{interpolate-size:allow-keywords}
+details::details-content{block-size:0;overflow:hidden;transition:block-size .3s ease,content-visibility .3s allow-discrete}
+details[open]::details-content{block-size:auto}
+details[open] p{animation:accIn .3s ease}
+@keyframes accIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){details::details-content{transition:none}details[open] p{animation:none}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:480px){.acc details p{padding-left:20px}}
